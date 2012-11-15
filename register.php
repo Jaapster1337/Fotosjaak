@@ -13,8 +13,9 @@ if ( isset($_POST['submit']))
 	}
 	else
 	{
-	//schrijf alle gegevens naar de database en
-	//verstuur een email met een activatielink
+	//schrijf alle gegevens naar de database
+		LoginClass::insert_into_login($_POST);
+	//verstuur een email met een activatielink	
 	}
 }
 else
@@ -41,8 +42,12 @@ else
 			<td><input type='text' name='address' /></td>
 		</tr>
 		<tr>
-			<td>addressnumber</td>
-			<td><input type='text' name='addressnumber' /></td>
+			<td>addressnr</td>
+			<td><input type='text' name='addressnr' /></td>
+		</tr>
+		<tr>
+			<td>city</td>
+			<td><input type='text' name='city' /></td>
 		</tr>
 		<tr>
 			<td>zipcode</td>
