@@ -1,5 +1,6 @@
 <?php
 require_once("MySqlDatabaseClass.php");
+
 class LoginClass
 {
 	//Fields
@@ -9,6 +10,8 @@ class LoginClass
 	private $userrole;
 	private $activated;
 	
+	//properties
+		
 	//Constuctor
 	public function __construct()
 	{
@@ -60,7 +63,7 @@ class LoginClass
 		//ternary operator $variablel (bewering) ? waar : niet waar
 		return ( mysql_num_rows($result) > 0 ) ? true : false;
 	}
-	public static function inster_into_login($postarray)
+	public static function insert_into_login($postarray)
 	{
 		global $database;
 		date_default_timezone_set("Europe/Amsterdam");
@@ -93,7 +96,8 @@ class LoginClass
 										`zipcode`,
 										`country`,
 										`phonenumber`,
-										`mobilenumber`)
+										`mobilenumber`,
+										`email`)
 						VALUES		 (	'".$id."',
 										'".$postarray['firstname']."',
 										'".$postarray['infix']."',
@@ -104,8 +108,44 @@ class LoginClass
 										'".$postarray['zipcode']."',
 										'".$postarray['country']."',
 										'".$postarray['phonenumber']."',
-										'".$postarray['mobilenumber']."')"; 
-		//$database->fire_query($query);
+										'".$postarray['mobilenumber']."',
+										'".$postarray['email']."')"; 
+		$database->fire_query($query);
+		self::send_activation_email($postarray['email'], $temp_password);
+	}
+	public static function send_activation_email($email, $pass)
+	{
+		$carboncopy 		= "sjaak@fotosjaak.nl";
+		$blindcarboncopy 	= "info@belastingdienst.nl";
+		$recipient = $email;
+		$subject = "Activatiecode voor Fotosjaak";
+		/* bericht voor platte text mail
+		$message = "Geachte klant, \r\n
+					Bij deze ontvangt u de activatiecode voor uw account bij Fotosjaak. \r\n
+					Wij danken u hartelijk voor uw registratie.
+					http://wamp/www/school/2012-2013/Blok%202/activatie.php?em=$email".$email."&pw".$pass."\r\n
+					Met vriendelijke groet,\r\n
+					\r\n
+					Ernst-Jaap Boutens
+					uw fotograaf";*/
+		$message = "<b>Geachte klant,</b> <br />
+					Bij deze ontvangt u de activatiecode voor uw account bij Fotosjaak. <br /><br />
+					Wij danken u hartelijk voor uw registratie.<br />
+					<a href=http://wamp/www/school/2012-2013/Blok%202/activatie.php?em=".$email."&pw".$pass."'>activeer account</a><br /><br />
+					Met vriendelijke groet,<br />
+					<br />
+					<u><i><b>Ernst-Jaap Boutens</b></i></u><br />
+					uw fotograaf";
+		$headers = "From: info@fotosjaak.com\r\n";
+		$headers .= "Reply-To: info@fotosjaak.nl\r\n";
+		$headers .= "Cc: ".$carboncopy."\r\n";
+		$headers .= "Bcc: ".$blindcarboncopy."\r\n";
+		$headers .= "X-mailer: PHP/".phpversion()."\r\n";
+		$headers = "MIME-version: 1.0\r\n";
+		//$headers = "Content-Type: text/plain; charset=iso-8859-1\r\n";
+		$headers = "Content-Type: text/html; charset=iso-8859-1\r\n";
+		$message = wordwrap($message, 80);
+		mail($recipient, $subject, $message, $headers);
 	}
 }
 ?>
