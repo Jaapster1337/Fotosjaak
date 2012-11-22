@@ -131,7 +131,7 @@ class LoginClass
 		$message = "<b>Geachte klant,</b> <br />
 					Bij deze ontvangt u de activatiecode voor uw account bij Fotosjaak. <br /><br />
 					Wij danken u hartelijk voor uw registratie.<br />
-					<a href=http://wamp/www/school/2012-2013/Blok%202/activatie.php?em=".$email."&pw".$pass."'>activeer account</a><br /><br />
+					<a href=http://localhost/school/2012-2013/Blok%202/activatie.php?em=".$email."&pw".$pass."'>activeer account</a><br /><br />
 					Met vriendelijke groet,<br />
 					<br />
 					<u><i><b>Ernst-Jaap Boutens</b></i></u><br />
@@ -146,6 +146,15 @@ class LoginClass
 		$headers = "Content-Type: text/html; charset=iso-8859-1\r\n";
 		$message = wordwrap($message, 80);
 		mail($recipient, $subject, $message, $headers);
+	}
+	public static function update_password($email, $pass)
+	{
+		global $database;
+		$query = "update `login`
+				  set `pass` = '".$pass."',
+					  `activated` = 'yes'	
+				  where `username` = '".$email."'";
+		$database->fire_query($query);
 	}
 }
 ?>
