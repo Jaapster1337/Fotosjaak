@@ -1,0 +1,153 @@
+body
+{
+	font-family:Arial, Comic Sans MS, Arial;
+	font-size:1em;
+	background-color:RGBA(15,179,194,0.8);
+	color:rgba(0,0,0,1);
+	border:0px solid black;
+/*	margin:12px 12px 12px 12px;
+	padding:12px 12px;
+	text-align: center;*/
+}
+
+h4
+{
+	margin:0px 0px 0px 0px;
+	
+}
+
+input[type=radio] {width:50px}
+
+
+div#container
+{
+	border:0px solid black;
+	width:700px;
+	margin:auto;
+}
+
+div#banner, #footer
+{
+	background-color:RGBA(100%,0%,0%,1);
+	font-size:1em;
+	font-weight:600;
+/*	text-align:center;*/
+}
+	
+#content
+{
+background-color:RGBA(100%,100%,100%,1);
+min-height:400px;
+font-size:1em;
+font-weight:600;
+position:relative;
+border:1px solid white;
+}
+
+#link
+{
+position:absolute;
+top:0px;
+left:-210px;
+border:0px solid black;
+width:200px;
+}
+
+a:link 
+{
+color:RGBA(2,0,81,0.8);
+text-decoration:none;
+
+}
+a:visited
+{
+color:RGBA(2,0,81,0.8);
+text-decoration:none;
+}
+
+a:hover
+{
+text-decoration:underline;
+color:RGBA(210,0,0,0.8);
+}
+
+a:active
+{
+text-decoration:underline
+color:RGBA(210,0,0,0.8)
+}
+
+#link ul
+{
+border:0px solid black;
+list-style-type:none;
+margin:0px;
+padding:0px;
+
+}
+
+#link li
+{
+border:0px solid blue;
+text-align:right;
+}
+
+#link a
+{
+border:0px solid red;
+}
+
+#faq table, #faq tr, #faq td, #faq th
+{
+	border:2px solid grey;
+	border-collapse:collapse;
+}
+
+#faq th
+{
+	background-color:red;
+	color:RGBA(0,0,0,0.8);
+}
+
+#faq td
+{
+	padding:5px;
+}
+
+#fl
+{
+	text-align:center;
+	border:1px solid black;
+
+}
+
+.changedata table, .changedata tr, .changedata td, .changedata th
+{
+	border:2px solid black;
+	border-collapse:collapse;
+	margin:20px auto;
+	text-align:center;
+}
+
+.changedata th
+{
+	border:2px solid black;
+	background-color:red;
+	color:RGBA(0,0,100,0.8);
+}
+
+.changedata th:last-of-type { border-right:1px solid}
+
+
+.changedata td.name
+{
+	padding:0px 0px 0px 10px;
+	color:black;
+	font-weight:bold;
+}
+
+.changedata td
+{
+	padding:0px;
+	border:2px solid black;
+}

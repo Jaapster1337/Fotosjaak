@@ -9,12 +9,14 @@ if ( isset($_POST['submit']))
 		/*meldt dat het emailadres al in gebruik is en dat er een ander adres gekozen moet worden*/
 		echo "het ingevulde emailadres is al in gebruik.<br /> vul een nieuw emailadres in. <br />
 		u wordt door gestuurd naar de registratie pagina.";
-		header('refresh:4;url=register.php');
+		header('refresh:4;url=index.php?content=register');
 	}
 	else
 	{
 	//schrijf alle gegevens naar de database
 		LoginClass::insert_into_login($_POST);
+		echo "U bent succesvol geregistreerd. U ontvangt binnen enkele ogenblikken een activatiemail";
+		header("refresh:3;url=index.php");
 	//verstuur een email met een activatielink	
 	}
 }
@@ -23,7 +25,7 @@ else
 
 ?>
 
-<form action='register.php' method='post'>
+<form action='index.php?content=register' method='post'>
 	<table>
 		<tr>
 			<td>firstname</td>

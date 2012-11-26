@@ -131,7 +131,7 @@ class LoginClass
 		$message = "<b>Geachte klant,</b> <br />
 					Bij deze ontvangt u de activatiecode voor uw account bij Fotosjaak. <br /><br />
 					Wij danken u hartelijk voor uw registratie.<br />
-					<a href=http://localhost/school/2012-2013/Blok%202/activatie.php?em=".$email."&pw".$pass."'>activeer account</a><br /><br />
+					<a href='http://localhost/school/2012-2013/Blok%202/index.php?content=activatie&em=".$email."&pw=".$pass."'>activeer account</a><br /><br />
 					Met vriendelijke groet,<br />
 					<br />
 					<u><i><b>Ernst-Jaap Boutens</b></i></u><br />
@@ -155,6 +155,28 @@ class LoginClass
 					  `activated` = 'yes'	
 				  where `username` = '".$email."'";
 		$database->fire_query($query);
+	}
+	
+	public static function check_email_password_exists($email, $pass)
+	{
+		global $database;
+		$query = "SELECT * FROM `login`
+				 WHERE 	`username` = '".$email."'
+				 AND	`pass` = '".$pass."'";
+		$record = self::find_by_sql($query);
+		//ternary operator
+		return (sizeof($record) > 0) ? true : false;
+		echo sizeof($record);exit();
+	}
+	
+	public static function check_if_activated($email)
+	{
+		$query = "SELECT * FROM `login`
+				  WHERE `username` ='".$email."'";
+		$record = self::find_by_sql($query);
+		//ternary operator
+		return ($record[0]->activated == 'yes') ? true :false;
+		//print_r($record);exit();
 	}
 }
 ?>
