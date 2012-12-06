@@ -1,5 +1,6 @@
 <?php
-require_once("./class/LoginClass");
+require_once("./class/LoginClass.php");
+require_once("./class/SessionClass.php");
 //hier wordt gekeken of er een gebruikersnaam en ww is ingevuld
 //een uitroepteken maakt van true false
 	if ( !empty($_POST['username']) && !empty($_POST['password']) )
@@ -10,7 +11,27 @@ require_once("./class/LoginClass");
 		{
 			
 			if (LoginClass::check_if_activated($_POST['username']) )
-				{ echo "bestaat";
+				{ 
+					$session->login(LoginClass::find_user($_POST));
+					
+					switch ( $_SESSION['user_role'] )
+					{ 
+					case 'customer':
+						header("location: index.php?content=customerHomepage");						
+						break;						
+					case 'root':
+						header("location: index.php?content=rootHomepage");
+						break;					
+					case 'sjaak':
+						header("location: index.php?content=sjaakHomepage");
+						break;						
+					case 'developer':
+						header("location: index.php?content=developerHomepage");
+						break;						
+					default:
+						break;
+					}
+					
 				/*$record = mysql_fetch_array($result);
 				switch($record['Gebruikersrol'])
 			{
@@ -31,7 +52,13 @@ require_once("./class/LoginClass");
 					header('location:index.php?content=login');
 					break;
 			}*/
+			}
+			else			
+			{
+				echo "account is niet geactiveerd. u wordt doorgetuurd naar de inlog pagina";
+		header('refresh:4;url=index.php?content=login');
 			
+			}
 		}
 		else
 		{

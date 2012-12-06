@@ -11,6 +11,9 @@ class LoginClass
 	private $activated;
 	
 	//properties
+	public function getId()	{return $this->id;}
+	public function getUsername()	{return $this->username;}
+	public function getUserrole()	{return $this->userrole;}
 		
 	//Constuctor
 	public function __construct()
@@ -177,6 +180,21 @@ class LoginClass
 		//ternary operator
 		return ($record[0]->activated == 'yes') ? true :false;
 		//print_r($record);exit();
+	}
+	
+	public static function find_user( $postArray )
+	{
+			$query = "SELECT * FROM `login`
+					  WHERE `username` = '".$postArray['username']."'
+					  AND `pass` = '".$postArray['password']."'";
+
+		$user_array = self::find_by_sql($query);
+		$user = array_shift($user_array);
+		return $user;
+		//var_dump($user)."<br />";
+		//echo $query; exit();
+
+
 	}
 }
 ?>

@@ -12,6 +12,7 @@
 			</div>
 			<div id='content'>
 				<div id='link'>
+				<?php include("./class/SessionClass.php"); ?>
 					<?php include('./link.php'); ?>
 				</div>
 				<?php include('./navigation.php'); ?>
