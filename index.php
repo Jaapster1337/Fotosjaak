@@ -2,7 +2,11 @@
 <html>
 		<head>
 			<link rel='stylesheet' type='text/css' href='./css/style.css' />
-			<title>Frontpage</title>
+			<link rel='stylesheet' type='text/css' href='./css/custom-theme/jquery-ui-1.9.2.custom.css' />
+			<script style='text/javascript' src='./jquery/jquery-1.8.3.js'></script>
+			<script style='text/javascript' src='./jquery/jquery-ui-1.9.2.custom.js'></script>
+			<script style='text/javascript' src='./jquery/jquery.validate.js'></script>
+			<title>FotoSjaak</title>
 		</head>
 	<body>
 		<div id='container'>

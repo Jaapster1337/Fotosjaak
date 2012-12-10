@@ -11,7 +11,7 @@
 				
 				case 'customer':
 					echo "<li>
-						  <a href='index.php?content=opdarcht'>opdracht plaatsen</a>
+						  <a href='index.php?content=opdracht'>opdracht plaatsen</a>
 						  </li>
 						  <li>
 						  <a href='index.php?content=faq_eng'>FAQ <img src='./pictures/gbvlag.png' /></a>

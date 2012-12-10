@@ -1,0 +1,1 @@
+alert ("dit zit in een extern textbestand");
