@@ -1,0 +1,24 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="15">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1584" startPos="431" endPos="431" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\index.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="420" startPos="188" endPos="188" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\config\config.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="792" startPos="457" endPos="457" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\login.php" />
+            <File firstVisibleLine="10" xOffset="0" scrollWidth="693" startPos="832" endPos="832" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\class\SessionClass.php" />
+            <File firstVisibleLine="160" xOffset="0" scrollWidth="1490" startPos="5654" endPos="5654" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\class\LoginClass.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1404" startPos="809" endPos="809" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\checklogin.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1220" startPos="121" endPos="121" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\class\MySqlDatabaseClass.php" />
+            <File firstVisibleLine="43" xOffset="0" scrollWidth="1450" startPos="779" endPos="779" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\register.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="530" startPos="6" endPos="6" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\index123.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1053" startPos="552" endPos="552" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\activatie.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1071" startPos="255" endPos="255" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\link.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="360" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\footer.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="5670" startPos="67" endPos="67" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\homepage.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="378" startPos="131" endPos="131" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\navigation.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="369" startPos="101" endPos="101" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\logout.php" />
+            <File firstVisibleLine="1" xOffset="0" scrollWidth="1440" startPos="344" endPos="344" selMode="0" lang="PHP" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\opdracht.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="396" startPos="44" endPos="44" selMode="0" lang="Javascript" encoding="-1" filename="C:\wamp\www\school\2012-2013\Blok 2\js\script.js" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

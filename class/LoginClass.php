@@ -196,5 +196,24 @@ class LoginClass
 
 
 	}
+	
+	public static function find_email($id)
+	{
+		$query = "SELECT * FROM `login`
+				  WHERE `id` = '".$id."'";
+		$user = self::find_by_sql($query);
+		$user = array_shift($user);
+		return $user->username;
+		var_dump($user); exit();	
+	}
+	
+	public static function find_pass($id)
+	{
+		$query = "SELECT * FROM `login`
+				  WHERE `id` = '".$id."'";
+		$user = self::find_by_sql($query);
+		$user = array_shift($user);
+		return $user->pass;	
+	}
 }
 ?>

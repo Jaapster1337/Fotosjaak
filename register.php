@@ -1,3 +1,49 @@
+<style type="text/css">
+	p.register
+	{
+		color:RGBA(240,0,0,0.4);
+	}
+</style>
+	
+<script type='text/javascript'>
+	$( function(){
+		$('#regForm').validate({
+					rules: {
+						firstname: "required",
+						surname: "required",
+						address: "required",
+						addressnumber: {
+							required: true,
+							number: true},
+						city: "required",						
+						zipcode: "required"	,					
+						country: "required"	,					
+						phonenumber: "required"	,					
+						mobilenumber: "required",						 
+						email: {
+							required: true,
+							email: true
+							   }						
+						},						
+					messages:	{
+						firstname: "<p class='register'>required</p>",
+						surname: "<p class='register'>required</p>",
+						address: "<p class='register'>required</p>",
+						addressnumber: {
+							required: "<p class='error'>Het bovenstaande veld is verplicht</p>",
+							number: "<p class='error'>Dit is geen huisnummer</p>"
+								       },
+						city: "<p class='register'>required</p>",						
+						zipcode: "<p class='register'>required</p>"	,					
+						country: "<p class='register'>required</p>"	,					
+						phonenumber: "<p class='register'>required</p>"	,					
+						mobilenumber: "<p class='register'>required</p>",						
+						email: "<p class='register'>required</p>"
+						}
+				})
+	});
+	
+</script>
 <?php
 if ( isset($_POST['submit']))
 {
@@ -25,7 +71,7 @@ else
 
 ?>
 
-<form action='index.php?content=register' method='post'>
+<form action='index.php?content=register' method='post' id='regForm'>
 	<table>
 		<tr>
 			<td>firstname</td>
