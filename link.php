@@ -19,7 +19,7 @@
 					break;
 				case 'sjaak':
 						echo "<li>
-						  <a href='index.php?content=opdracht'>opdrachten</a>
+						  <a href='index.php?content=opdrachten'>opdrachten</a>
 						  </li>";
 				
 					break;

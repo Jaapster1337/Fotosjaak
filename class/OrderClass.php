@@ -2,6 +2,9 @@
 require_once("MySqlDatabaseClass.php");
 require_once("UserClass.php");
 require_once("LoginClass.php");
+require_once("DateFormatClass.php");
+require_once("DbFormatClass.php");
+
 
 class OrderClass
 {
@@ -169,18 +172,44 @@ class OrderClass
 	{
 		global $database;
 		$query = "SELECT * FROM `order`, `user`
-		WHERE `order`.`user_id` = `user`.`id`";
+		WHERE `order`.`user_id` = `user`.`id`
+		ORDER BY 'user_id'";
 		$result = $database->fire_query($query);
 		$rows = "";
+		$previous = "";
 		while ( $object = mysql_fetch_object($result))
 		{
 		//var_dump($object);
-		$rows .= "<tr>
-						<td>".$object->user_id."</td>
-						<td>".$object->firstname."</td>
-						<td>".$object->infix."</td>
-						<td>".$object->surname."</td>
+		$current = $object->user_id;
+		if ( $current != $previous)
+		{
+		$rows.= "<tr>
+					<td colspan='5'>test</td>
+					id = [".$object->user_id."] 
+						  ".$object->firstname." 
+						  ".$object->infix." 
+						  ".$object->surname."
+				</tr>";
+		}
+		$previous = $current;
+		$rows .=   "<tr>						
+						<td>".$object->order_id."</td>
 						<td>".$object->order_short."</td>
+						<td>
+						oplevering: ".DateFormat::change($object->deliverydate)."<br />
+						Evenement: ".DateFormat::change($object->eventdate)."<br />
+						plaatsing: ".DateFormat::change($object->orderdate)."<br />
+						</td>
+						<td>".$object->number_of_pictures."</td>
+						<td>".DbFormat::translate_color($object->color_pictures)."</td>
+						<td>".DbFormat::translate_paid($object->paid)."</td>
+						<td>".DbFormat::translate_paid($object->confirmed)."</td>
+						<td>".$object->charge."</td>
+						<td>
+							<a href='index.php?content=upload_form&customer={$object->user_id}&order_id={$object->order_id}'>
+							dit is een plaatje.png							
+							</a>
+						</td>
 					</tr>";
 		}
 		return $rows;
