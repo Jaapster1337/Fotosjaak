@@ -206,7 +206,7 @@ class OrderClass
 						<td>".DbFormat::translate_paid($object->confirmed)."</td>
 						<td>".$object->charge."</td>
 						<td>
-							<a href='index.php?content=upload_form&customer={$object->user_id}&order_id={$object->order_id}'>
+							<a href='index.php?content=upload_form&user_id={$object->user_id}&order_id={$object->order_id}'>
 							dit is een plaatje.png							
 							</a>
 						</td>
