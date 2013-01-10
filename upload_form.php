@@ -51,7 +51,7 @@ if (isset($_POST['submit']))
 		
 		$thumb = imagecreatetruecolor($tn_width, $tn_height);
 		$source = imagecreatefromjpeg($path_photo);
-		imagecopyreampled($thumb,
+		imagecopyresampled($thumb,
 						  $source,
 						  0,
 						  0,
@@ -61,7 +61,7 @@ if (isset($_POST['submit']))
 						  $tn_height,
 						  $specs_image[0],
 						  $specs_image[1]);
-		imagejpg($thumb, $path_thumbnail, 100);
+		imagejpeg($thumb, $path_thumbnail, 100);
 		
 	}
 	else
