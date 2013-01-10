@@ -104,19 +104,24 @@ if (isset($_POST['submit']))
 		
 		
 		echo "Het uploaden van het bestand met de bestandsnaam: ".$_FILES['foto']['name']." is gelukt.<br /> U wordt doorgestuurd naar de uploadpagina om meer fotos te uploaden.";
-		header("refresh:4;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
+		header("refresh:2;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
 		
 	}
 	else
 	{
 		echo "Het uploaden van het bestand met de extensie: ".$_FILES['foto']['type']." is niet toegestaan.";
-		header("refresh:4;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
+		header("refresh:2;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
 	}
 }
 else
 {
-PhotoClass::show_photos($_GET["user_id"], $_GET["order_id"]);
+
 ?>
+<table>
+<?php
+	PhotoClass::show_photos($_GET["user_id"], $_GET["order_id"]);
+?>
+</table>
 <form action='' method='post' enctype='multipart/form-data'>
 	<table>
 		<tr>

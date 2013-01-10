@@ -1,5 +1,6 @@
 <?php
  require_once("class/MySqlDatabaseClass.php");
+ define('NUMBER_OF_PHOTOS', 6);
  
  class PhotoClass
  {
@@ -8,6 +9,7 @@
 	private $order_id;
 	private $photo_name;
 	private $Photo_text;
+	
 	
 	public static function find_by_sql( $query )
 	{
@@ -44,11 +46,35 @@
 	{
 		$query = " SELECT * FROM `photo` WHERE `order_id` = '{$order_id}' ";
 		$result = self::find_by_sql($query);
-		  foreach ($result as $value) 
+		$teller = 0;
+		  echo "<tr>";
+		  foreach ($result as $photo) 
 		  {
-			echo "<img src='fotos/{$user_id}/{$order_id}/thumbnails/tn_{$photo_name}' alt'{$photo_name}' />";
+			if ( $teller != NUMBER_OF_PHOTOS )
+			{ 
+				echo "<td>
+						<img src='./fotos/{$user_id}/{$order_id}/thumbnails/tn_{$photo->photo_name}' alt'{$photo->photo_name}' />
+						<div>
+							{$photo->photo_text}
+						</div>
+					</td>";
+				$teller++;
+			}
+			else
+			{
+				echo "</tr>
+					  <tr>
+						<td>
+							<img src='./fotos/{$user_id}/{$order_id}/thumbnails/tn_{$photo->photo_name}' alt'{$photo->photo_name}' />
+							<div>
+								{$photo->photo_text}
+							</div>
+						</td>";
+				$teller=1;
+			}
 		  }
-		var_dump($result);
+		  echo "</tr>";
+		//var_dump($result);
 	}
  }
 ?>
