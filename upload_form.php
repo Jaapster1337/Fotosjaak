@@ -1,4 +1,5 @@
 <?php
+require_once("class/PhotoClass.php");
 if (isset($_POST['submit']))
 {
 	/*var_dump($_FILES['foto']);
@@ -30,7 +31,7 @@ if (isset($_POST['submit']))
 		}
 		
 		//maken van thumbnail
-		define("THUMD_SIZE", 80);
+		define("THUMB_SIZE", 80);
 		$path_photo = $dir.$_FILES['foto']['name'];
 		$path_thumbnail = $dir."thumbnails/tn_".$_FILES['foto']['name'];
 		$specs_image = getimagesize($path_photo);
@@ -50,18 +51,60 @@ if (isset($_POST['submit']))
 		}
 		
 		$thumb = imagecreatetruecolor($tn_width, $tn_height);
-		$source = imagecreatefromjpeg($path_photo);
-		imagecopyresampled($thumb,
-						  $source,
-						  0,
-						  0,
-						  0,
-						  0,
-						  $tn_width,
-						  $tn_height,
-						  $specs_image[0],
-						  $specs_image[1]);
-		imagejpeg($thumb, $path_thumbnail, 100);
+		switch($_FILES['foto']['type'])
+		{
+			case'image/jpeg':
+				$source = imagecreatefromjpeg($path_photo);
+				imagecopyresampled($thumb,
+								  $source,
+								  0,
+								  0,
+								  0,
+								  0,
+								  $tn_width,
+								  $tn_height,
+								  $specs_image[0],
+								  $specs_image[1]);
+				imagejpeg($thumb, $path_thumbnail, 100);			
+			break;
+			
+			case'image/png':
+				$source = imagecreatefrompng($path_photo);
+				imagecopyresampled($thumb,
+								  $source,
+								  0,
+								  0,
+								  0,
+								  0,
+								  $tn_width,
+								  $tn_height,
+								  $specs_image[0],
+								  $specs_image[1]);
+				imagepng($thumb, $path_thumbnail, 9);			
+			break;
+			
+			case'image/gif':
+				$source = imagecreatefromgif($path_photo);
+				imagecopyresampled($thumb,
+								  $source,
+								  0,
+								  0,
+								  0,
+								  0,
+								  $tn_width,
+								  $tn_height,
+								  $specs_image[0],
+								  $specs_image[1]);
+				imagegif($thumb, $path_thumbnail);			
+			break;
+		}
+		PhotoClass::insert_into_photo($_POST['order_id'], 
+									  $_FILES['foto']['name'],
+									  $_POST['beschrijving']);
+		
+		
+		echo "Het uploaden van het bestand met de bestandsnaam: ".$_FILES['foto']['name']." is gelukt.<br /> U wordt doorgestuurd naar de uploadpagina om meer fotos te uploaden.";
+		header("refresh:4;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
 		
 	}
 	else
@@ -70,6 +113,9 @@ if (isset($_POST['submit']))
 		header("refresh:4;url=index.php?content=upload_form&user_id=".$_POST['user_id']."&order_id=".$_POST['order_id']);
 	}
 }
+else
+{
+PhotoClass::show_photos($_GET["user_id"], $_GET["order_id"]);
 ?>
 <form action='' method='post' enctype='multipart/form-data'>
 	<table>
@@ -89,3 +135,6 @@ if (isset($_POST['submit']))
 	<input type='hidden' name='user_id' value='<?php echo $_GET["user_id"];?>'/>
 	<input type='hidden' name='order_id' value='<?php echo $_GET["order_id"];?>'/>
 </form>
+<?php
+}
+?>
