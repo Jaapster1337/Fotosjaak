@@ -20,6 +20,7 @@ class OrderClass
 	private $orderdate;
 	private $confirmed;
 	private $charge;
+	private $confirm_charge;
 	private $paid;
 
 	//Constructor
@@ -50,6 +51,7 @@ class OrderClass
 			$object->orderdate = $row->orderdate;
 			$object->confirmed = $row->confirmed;
 			$object->charge = $row->charge;
+			$object->confirm_charge = $row->confirm_charge;
 			$object->paid = $row->paid;
 			$object_array[] = $object;	
 		}
@@ -192,6 +194,14 @@ class OrderClass
 				</tr>";
 		}
 		$previous = $current;
+		if ($object->charge == 0.00)
+						{
+							$charge = "<a href='index.php?content=price&order_id={$object->order_id}&user_id={$object->user_id}'>".$object->charge."</a>";
+						}
+						else
+						{
+							$charge = $object->charge;
+						}
 		$rows .=   "<tr>						
 						<td>".$object->order_id."</td>
 						<td>".$object->order_short."</td>
@@ -203,8 +213,8 @@ class OrderClass
 						<td>".$object->number_of_pictures."</td>
 						<td>".DbFormat::translate_color($object->color_pictures)."</td>
 						<td>".DbFormat::translate_paid($object->paid)."</td>
-						<td>".DbFormat::translate_paid($object->confirmed)."</td>
-						<td>".$object->charge."</td>
+						<td>".DbFormat::translate_confirmed($object->confirmed)."</td>
+						<td> {$charge} </td>
 						<td>
 							<a href='index.php?content=upload_form&user_id={$object->user_id}&order_id={$object->order_id}'>
 							dit is een plaatje.png							
@@ -214,5 +224,72 @@ class OrderClass
 		}
 		return $rows;
 	}
- }
+	public static function update_charge_by_id($order_id, $charge)
+	{
+		global $database;
+		$query = "UPDATE `order` SET `CHARGE` = '{$charge}' WHERE `order_id` = '{$order_id}'";
+		$database->fire_query($query);
+		echo "De prijs van de order is succesvol veranderd.";
+		header("refresh:4;url=index.php?content=opdrachten");
+	}
+	
+	public static function find_orders_by_id()
+	{
+		global $database;
+		$query = "SELECT * FROM `order`, `user`
+			WHERE `order`.`user_id` = `user`.`id`
+			AND `user`.`id` = '{$_SESSION['user_id']}'
+			ORDER BY `user_id`";
+		$result = $database->fire_query($query);
+		$rows = "";
+		$previous = "";
+		while ( $object = mysql_fetch_object($result))
+        {
+			//var_dump($object);
+			$current = $object->user_id;
+			if ( $current != $previous)
+				{ 
+				$rows .= "<tr>
+					 <td colspan='5'>
+					  id = [".$object->user_id."] "
+							 .$object->firstname." "
+							 .$object->infix." "
+							 .$object->surname."
+					 </td>
+					</tr>";
+				}
+			$previous = $current;
+			$rows .= "<tr>
+				<td>".$object->order_id."</td>
+				<td>".$object->order_short."</td>
+				<td>
+					Oplevering: ".DateFormat::change($object->deliverydate)."<br />
+					Evenement: ".DateFormat::change($object->eventdate)."<br />
+					Plaatsing: ".DateFormat::change($object->orderdate)."<br />
+				</td>
+				<td>".$object->number_of_pictures."</td>
+				<td>".DbFormat::translate_color($object->color_pictures)."</td>
+				<td>".DbFormat::translate_paid($object->paid)."</td>
+				<td>".DbFormat::translate_confirmed($object->confirmed)."</td>
+				<td><a href='index.php?content=bevestigen_prijs&order_id={$object->order_id}&charge={$object->charge}'>{$object->charge}</a></td>
+				<td>
+					<a href='index.php?content=upload_form&user_id={$object->user_id}&order_id={$object->order_id}'>
+						<img src='img/plus.png' alt='upload' />
+				</a>
+				</td>
+			</tr>";
+		}
+		return $rows;
+	}
+	
+	public static function confirm_charge_by_order_id($order_id)
+	{
+		global $database;
+		$query = "UPDATE `order` SET `confirm_charge` = 'yes' WHERE `order_id` = '{$order_id}'";
+		$database->fire_query($query);
+		echo "De prijs is bevestigd. U wordt doorgestuurd naar de opdrachtenpagina.";	
+		
+		
+	}
+}
 ?>

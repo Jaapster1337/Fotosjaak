@@ -14,7 +14,7 @@
 						  <a href='index.php?content=opdracht'>opdracht plaatsen</a>
 						  </li>
 						  <li>
-						  <a href='index.php?content=faq_eng'>FAQ <img src='./pictures/gbvlag.png' /></a>
+						  <a href='index.php?content=opdrachten_customer'>geplaatse opdrachten</a>
 						  </li>";
 					break;
 				case 'sjaak':

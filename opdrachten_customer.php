@@ -3,6 +3,7 @@ require_once("./class/OrderClass.php");
 
 ?>
 Opdrachten van klanten
+<p>
 <table>
 	<form action='' method=''>
 		<tr>
@@ -14,9 +15,7 @@ Opdrachten van klanten
 			<th>betaald</th>
 			<th>bevestigd</th>
 			<th>prijs</th>
-			<th>prijs_ok</th>
-			<th>upload</th>
 		</tr>
-		<?php echo OrderClass::find_orders_users(); ?>
+		<?php echo OrderClass::find_orders_by_id(); ?>
 	</form>
 </table>
