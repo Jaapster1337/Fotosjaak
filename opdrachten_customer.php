@@ -15,6 +15,7 @@ Opdrachten van klanten
 			<th>betaald</th>
 			<th>bevestigd</th>
 			<th>prijs</th>
+			<th>bevestigd</th>
 		</tr>
 		<?php echo OrderClass::find_orders_by_id(); ?>
 	</form>

@@ -73,7 +73,8 @@ class OrderClass
 				 `number_of_pictures`,
 				 `orderdate`,
 				 `confirmed`,
-				 `charge`,
+				 `charge`
+				 `confirm_charge`,
 				 `paid`)
 		VALUES  ( Null,
 				'".$_SESSION['user_id']."',
@@ -86,6 +87,7 @@ class OrderClass
 				'".$date."',
 				'no',
 				'0',
+				'no',
 				'no')";
 		$database->fire_query($query);	
 		$order_id = mysql_insert_id();
@@ -186,7 +188,7 @@ class OrderClass
 		if ( $current != $previous)
 		{
 		$rows.= "<tr>
-					<td colspan='5'>test</td>
+					<td colspan='9'>test</td>
 					id = [".$object->user_id."] 
 						  ".$object->firstname." 
 						  ".$object->infix." 
@@ -219,6 +221,9 @@ class OrderClass
 							<a href='index.php?content=upload_form&user_id={$object->user_id}&order_id={$object->order_id}'>
 							dit is een plaatje.png							
 							</a>
+						</td>
+						<td>
+							{$object->confirm_charge}
 						</td>
 					</tr>";
 		}
@@ -288,6 +293,7 @@ class OrderClass
 		$query = "UPDATE `order` SET `confirm_charge` = 'yes' WHERE `order_id` = '{$order_id}'";
 		$database->fire_query($query);
 		echo "De prijs is bevestigd. U wordt doorgestuurd naar de opdrachtenpagina.";	
+		header("refresh:4;url=index.php?content=opdrachten_customer");
 		
 		
 	}

@@ -15,6 +15,9 @@
 						  </li>
 						  <li>
 						  <a href='index.php?content=opdrachten_customer'>geplaatse opdrachten</a>
+						  </li>
+						  <li>
+						  <a href='index.php?content=updateregistration'>gegevens wijzigen</a>
 						  </li>";
 					break;
 				case 'sjaak':
