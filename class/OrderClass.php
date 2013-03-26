@@ -73,7 +73,7 @@ class OrderClass
 				 `number_of_pictures`,
 				 `orderdate`,
 				 `confirmed`,
-				 `charge`
+				 `charge`,
 				 `confirm_charge`,
 				 `paid`)
 		VALUES  ( Null,

@@ -132,8 +132,8 @@ if ( isset($_POST['submit'])){
 			<td><input type='text' name='email'  value='<?php echo $object->email ?>'/></td>
 		</tr>
 		<tr>
-			<td>email</td>
-			<td><input type='text' name='email'  value='<?php echo $object->email ?>'/></td>
+			<td>pass</td>
+			<td><input type='text' name='pass'  value='<?php echo $object->pass ?>'/></td>
 		</tr>		
 		<tr>
 			<td>&nbsp;</td>
